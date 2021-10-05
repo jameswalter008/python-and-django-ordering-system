@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'products' %}">Products</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+        {% if request.user.is_authenticated %} <!--request can be used in every template django-->
+        <div class="text-white">
+            <span class="me-3">{{request.user.username}}</span>
+            <a href="{% url 'logout' %}">logout</a>
+        </div>
+        {% else %}
+        <div class="text-white">
+            <a href="{% url 'login' %}" class="me-3">login</a>
+            <a href="{% url 'register' %}">register</a>
+        </div>
+        {% endif %}
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+{% extends 'accounts/master.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+            <div class="form-group">
+                <label for="">username:</label>
+                <input type="text" name="username" class="form-control"><!--name attr is important because we have to reuse it in view func-->
+            </div>
+            <div class="form-group">
+                <label for="">password:</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+{% endblock %}
